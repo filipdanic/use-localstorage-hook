@@ -1,7 +1,7 @@
 {
   "name": "use-localstorage-hook",
   "version": "1.0.0",
-  "description": "A custom React hook that returns network status and information.",
+  "description": "A custom React hook that lets you sync with localStorage and helps you manipulate objects via built-in JSON.stringy helpers.",
   "author": "http://danicfilip.com/",
   "license": "MIT",
   "repository": "http://github.com/filipdanic/use-localstorage-hook",
