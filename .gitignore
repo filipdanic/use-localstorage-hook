@@ -62,3 +62,4 @@ typings/
 
 example/build
 .idea
+.idea/workspace.xml

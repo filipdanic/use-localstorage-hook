@@ -9,7 +9,7 @@ const App = () => {
       <img src={logo} style={{ height: 96, marginBottom: 12 }} alt='' />
       <img src='https://img.shields.io/npm/v/use-localstorage-hook.svg' alt='' />
       <h1>use-localstorage-hook</h1>
-      <p>A custom React hook that lets you <mark>sync with localStorage</mark> and helps you manipulate objects via built-in <code>JSON.stringy</code> helpers.</p>
+      <p>A custom React hook that lets you <mark>sync with localStorage</mark> and helps you manipulate objects via built-in <code>JSON.stringify</code> helpers.</p>
       <p>Start with:</p>
       <p><code>npm install --save use-localstorage-hook</code></p>
       <p>And in your component use the hook like this:</p>
