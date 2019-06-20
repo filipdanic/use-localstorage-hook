@@ -1,5 +1,5 @@
 [![NPM](https://img.shields.io/npm/v/use-localstorage-hook.svg)](https://www.npmjs.com/package/use-localstorage-hook)
-# use-object
+# use-localstorage-hook
 
 A custom React hook that lets you sync with `localStorage` and helps you manipulate objects via built-in `JSON.stringy` helpers.
 
