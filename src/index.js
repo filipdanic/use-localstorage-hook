@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useLocalStorage = (key, initialValue, useRawValues) => {
+const useLocalStorage = (key, initialValue, useRawValues, subscribe) => {
   const [ value, setValue ] = useState(() => {
     try {
       const localStorageValue = localStorage.getItem(key);
@@ -24,6 +24,26 @@ const useLocalStorage = (key, initialValue, useRawValues) => {
       localStorage.setItem(key, serializedState);
     } catch(e) {}
   });
+
+  useEffect(() => {
+    if (!subscribe) {
+      return;
+    }
+
+    function handleStorageEvent(event) {
+      if (event.key !== key) {
+        return;
+      }
+
+      setValue(useRawValues ? event.newValue : JSON.parse(event.newValue || 'null'));
+    }
+
+    window.addEventListener('storage', handleStorageEvent);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageEvent);
+    };
+  }, [subscribe])
 
   return [ value, setValue ];
 };
