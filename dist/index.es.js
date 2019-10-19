@@ -38,7 +38,7 @@ var slicedToArray = function () {
   };
 }();
 
-var useLocalStorage = function useLocalStorage(key, initialValue, useRawValues) {
+var useLocalStorage = function useLocalStorage(key, initialValue, useRawValues, subscribe) {
   var _useState = useState(function () {
     try {
       var localStorageValue = localStorage.getItem(key);
@@ -61,6 +61,26 @@ var useLocalStorage = function useLocalStorage(key, initialValue, useRawValues) 
       var serializedState = useRawValues ? String(value) : JSON.stringify(value);
       localStorage.setItem(key, serializedState);
     } catch (e) {}
+  });
+
+  useEffect(function () {
+    if (!subscribe) {
+      return;
+    }
+
+    function handleStorageEvent(event) {
+      if (event.key !== key) {
+        return;
+      }
+
+      setValue(useRawValues ? event.newValue : JSON.parse(event.newValue || 'null'));
+    }
+
+    window.addEventListener('storage', handleStorageEvent);
+
+    return function () {
+      window.removeEventListener('storage', handleStorageEvent);
+    };
   });
 
   return [value, setValue];
